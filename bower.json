@@ -1,0 +1,26 @@
+{
+  "name": "time-component",
+  "version": "0.0.1",
+  "authors": [
+    "Andres Bedoya <mortiis.angel@gmail.com>"
+  ],
+  "description": "A component for time-climate",
+  "keywords": [
+    "time",
+    "climate",
+    "web",
+    "component"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5"
+  }
+}
