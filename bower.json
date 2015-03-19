@@ -9,6 +9,7 @@
     "time",
     "climate",
     "web",
+    "weater",
     "component"
   ],
   "license": "MIT",
@@ -21,6 +22,8 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.5.5"
+    "polymer": "Polymer/polymer#~0.5.5",
+    "core-elements": "Polymer/core-elements#~0.5.5",
+    "weather-icons": "~1.3.2"
   }
 }

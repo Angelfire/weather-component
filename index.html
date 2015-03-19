@@ -8,11 +8,14 @@
     <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
     <!-- Importing Custom Elements -->
-    <link rel="import" href="js/my-weather.html">
+    <link rel="import" href="elements/my-weather.html">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <input
+        id="city"
+        oninput="document.querySelector('my-weather').city = this.value">
 
     <my-weather city="medellin"></my-weather>
 
