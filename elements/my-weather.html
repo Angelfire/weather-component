@@ -1,0 +1,185 @@
+<!-- Import Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Import Core Ajax -->
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+
+<style>
+  @font-face {
+    font-family: 'weathericons';
+    src: url('../font/weather-icons/weathericons-regular-webfont.eot');
+    src: url('../font/weather-icons/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/weather-icons/weathericons-regular-webfont.woff') format('woff'),
+         url('../font/weather-icons/weathericons-regular-webfont.ttf') format('truetype'),
+         url('../font/weather-icons/weathericons-regular-webfont.svg#weathericons-regular-webfontRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
+
+<polymer-element name="my-weather" attributes="city">
+    <template>
+        <style>
+            @import url('../font/weather-icons/weather-icons.css');
+            :host {
+                display: block;
+            };
+            #weather_wrapper{
+                width: 400px;
+                margin: 100px auto;
+            }
+            .weatherCard{
+                width: 400px;
+                height: 200px;
+                font-family: 'Open Sans';
+                position: relative;
+            }
+            .currentTemp{
+                width: 220px;
+                height: 200px;
+                background: rgb(41, 41, 41);
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .currentWeather{
+                width: 180px;
+                height: 200px;
+                background: rgb(237, 237, 237);
+                margin: 0;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+            .temp{
+                font-size: 80px;
+                text-align: center;
+                display: block;
+                font-weight: 300;
+                color: rgb(255, 255, 255);
+                padding: 20px 0 0;
+            }
+            .location{
+                color: rgb(255, 255, 255);
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 30px;
+                display: block;
+            }
+            .conditions{
+                font-family: weathericons;
+                font-size: 80px;
+                display: block;
+                text-align: center;
+            }
+            #description {
+                display: block;
+                font-size: 12px;
+                padding-top: 5px;
+                text-align: center;
+            }
+            .info{
+                width: 180px;
+                height: 50px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background: rgb(42, 178, 234);
+                font-weight: 700;
+                color: rgb(255, 255, 255);
+                text-align: center;
+            }
+            #min {
+              font-size: 18px;
+                width: 50%;
+                position: absolute;
+                left: 10px;
+                top: 11px;
+            }
+            #max {
+              font-size: 18px;
+                width: 50%;
+                right: 0;
+                position: absolute;
+                top: 11px;
+            }
+        </style>
+        <core-ajax id="ajax"
+            auto
+            url="http://api.openweathermap.org/data/2.5/weather"
+            params='{
+                "q": "{{city}}",
+                "units": "metric"
+            }'
+            handleAs="json"
+            response={{response}}>
+        </core-ajax>
+        <template if={{response}}>
+            <div id="weather_wrapper">
+                <div class="weatherCard">
+                    <div class="currentTemp">
+                        <span class="temp">{{data.currentTemp}}&deg;</span>
+                        <span class="location">{{data.name}}</span>
+                    </div>
+                    <div class="currentWeather">
+                        <div class="conditions">
+                            <i class="wi {{data.icon}}"></i>
+                        </div>
+                        <span id="description">{{data.conditionText}}</span>
+                        <div class="info">
+                            <div id="min">
+                                <i class="wi wi-down"></i> {{data.minTemp}}°
+                            </div>
+                            <div id="max">
+                                <i class="wi wi-up"></i> {{data.maxTemp}}°
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </template>
+    <script>
+        Polymer('my-weather', {
+            city: "Cali",
+            iconMapping: {
+                "01d": "wi-day-sunny",
+                "01n": "wi-night-clear",
+                "02d": "wi-day-cloudy",
+                "02n": "wi-night-cloudy",
+                "03d": "wi-cloudy",
+                "03n": "wi-cloudy",
+                "04d": "wi-cloudy",
+                "04n": "wi-cloudy",
+                "09d": "wi-showers",
+                "09n": "wi-showers",
+                "10d": "wi-day-rain",
+                "10n": "wi-night-rain",
+                "11d": "wi-thunderstorm",
+                "11n": "wi-thunderstorm",
+                "13d": "wi-snow",
+                "13n": "wi-snow",
+                "50d": "wi-fog",
+                "50n": "wi-fog"
+            },
+            ready: function () {
+                this.$.ajax.addEventListener('core-response',
+                    function (e) {
+                        var res = e.detail.response;
+                        this.data = {
+                            icon: this.iconMapping[res.weather[0].icon],
+                            name: res.name,
+                            currentTemp: Math.round(res.main.temp),
+                            conditionText: res.weather[0].description,
+                            maxTemp: Math.round(res.main.temp_max),
+                            minTemp: Math.round(res.main.temp_min)
+                        }
+                        this.fire('my-weather-load', {weather: this.data});
+                    }.bind(this)
+                );
+            }
+        });
+    </script>
+</polymer-element>
