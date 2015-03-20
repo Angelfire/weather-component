@@ -24,5 +24,5 @@ Atributes       | Options       | Default       | Description
 
 ## Credits
 - [OpenWeatherMap](http://openweathermap.org/API) 
-- [Weather Icons](http://erikflowers.github.io/weather-icons/
+- [Weather Icons](http://erikflowers.github.io/weather-icons/)
 
