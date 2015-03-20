@@ -17,7 +17,7 @@
   }
 </style>
 
-<polymer-element name="my-weather" attributes="city">
+<polymer-element name="my-weather" attributes="city units language">
     <template>
         <style>
             @import url('../bower_components/weather-icons/css/weather-icons.min.css');
@@ -110,7 +110,8 @@
             url="http://api.openweathermap.org/data/2.5/weather"
             params='{
                 "q": "{{city}}",
-                "units": "metric"
+                "units": "{{units}}",
+                "lang": "{{language}}"
             }'
             handleAs="json"
             response={{response}}>
@@ -142,7 +143,9 @@
     </template>
     <script>
         Polymer('my-weather', {
-            city: "Cali",
+            city: "Medellin",
+            units: "metric",
+            language: "es",
             iconMapping: {
                 "01d": "wi-day-sunny",
                 "01n": "wi-night-clear",
