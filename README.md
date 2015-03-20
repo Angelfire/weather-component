@@ -1,4 +1,5 @@
-# <my-weather>
+# &lt;my-weather&gt;
+
 > Weather component using Polymer.
 > Display the current weather at a given location.
 
