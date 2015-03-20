@@ -10,10 +10,10 @@
 
 ## Options
 Atributes       | Options       | Default       | Description
----             ---             ---             ---
-`city`            *string*        *Medellin*      The name of the city e.g. Medellin, Paris
-`units`           *string*        *metric*        Units formate e.g. Internal, metric, or imperial
-`language`        *string*        *es*            Language e.g. English - en, Russian - ru, Italian - it, Spanish - es (or sp), Ukrainian - uk (or ua), German - de, Portuguese - pt, Romanian - ro, Polish - pl, Finnish - fi, Dutch - nl, French - fr, Bulgarian - bg, Swedish - sv (or se), Chinese Traditional - zh_tw, Chinese Simplified - zh (or zh_cn), Turkish - tr, Croatian - hr, Catalan - ca 
+---             |---            |---            |---
+`city`          | *string*      | *Medellin*    | The name of the city e.g. Medellin, Paris
+`units`         | *string*      | *metric*      | Units formate e.g. Internal, metric, or imperial
+`language`      | *string*      | *es*          | Language e.g. English - en, Russian - ru, Italian - it, Spanish - es (or sp), Ukrainian - uk (or ua), German - de, Portuguese - pt, Romanian - ro, Polish - pl, Finnish - fi, Dutch - nl, French - fr, Bulgarian - bg, Swedish - sv (or se), Chinese Traditional - zh_tw, Chinese Simplified - zh (or zh_cn), Turkish - tr, Croatian - hr, Catalan - ca 
 
 ## Contributing
 1. Fork it!
